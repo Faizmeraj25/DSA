@@ -47,15 +47,17 @@ class SGTree
     }
     void update(int ind, int low, int high, int i, int val)
     {
-        if(low == high)
+         if(low == high)
         {
-            seg[ind] = val; 
-            return; 
+            seg[ind] = val;
+            return ; 
         }
         int mid = (low + high) >> 1; 
-        update(2*ind+1, low, mid, i, val); 
-        update(2*ind+2, mid+1, high, i, val); 
-        seg[ind] = min(seg[2*ind+1], seg[2*ind+2]); 
+        if(i <= mid)
+        updateVal(2*ind+1, low, mid, i, val);
+        else 
+        updateVal(2*ind+2, mid+1, high, i, val); 
+        seg[ind] = min(seg[2*ind+1],  seg[2*ind+2]); 
         
     }    
 }; 
